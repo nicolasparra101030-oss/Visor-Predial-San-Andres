@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visor Predial · San Andrés</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <span class="header-title">Visor Predial · San Andrés</span>
+      <span class="header-subtitle">Gobernación Archipiélago</span>
+    </div>
+    <div class="header-right">
+      <span id="stat-count">0 predios</span>
+    </div>
+  </header>
+  <main>
+    <div id="map"></div>
+    <div id="panel">
+      <div id="panel-empty">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        <p>Selecciona un predio en el mapa para ver su información</p>
+      </div>
+      <div id="panel-detail" class="hidden">
+        <div class="panel-header">
+          <span id="detail-patrimonio" class="patrimonio-badge hidden"></span>
+          <h2 id="detail-nombre"></h2>
+          <p id="detail-codigo" class="matricula"></p>
+          <p id="detail-matricula" class="matricula"></p>
+        </div>
+        <table class="data-table">
+          <tbody>
+            <tr><td>Dirección</td><td id="detail-direccion"></td></tr>
+            <tr><td>Área terreno</td><td id="detail-area-terreno"></td></tr>
+            <tr><td>Área construcción</td><td id="detail-area-construccion"></td></tr>
+            <tr><td>Destino</td><td id="detail-uso"></td></tr>
+          </tbody>
+        </table>
+        <div class="avaluo-box">
+          <p class="avaluo-label">Valor de avalúo</p>
+          <p id="detail-avaluo" class="avaluo-amount"></p>
+        </div>
+        <div id="detail-foto-box" class="foto-box hidden">
+          <img id="detail-foto" class="foto-fachada" alt="Foto de fachada del predio">
+        </div>
+        <div id="detail-foto-empty" class="foto-empty hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <circle cx="9" cy="10" r="1.5"/>
+            <path d="M21 16l-5.5-5.5a2 2 0 0 0-2.8 0L3 19"/>
+          </svg>
+          <p>Sin foto de fachada disponible</p>
+        </div>
+        <button id="btn-pdf" class="btn-pdf" onclick="openPdf()">Ver ficha de caracterización</button>
+        <button id="btn-ficha-patrimonio" class="btn-pdf btn-pdf-patrimonio hidden" onclick="openFichaPatrimonio()">Ver ficha de inventario patrimonial</button>
+        <button class="btn-close" onclick="closePanelDetail()">Cerrar</button>
+      </div>
+      <div id="panel-nodata" class="hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <span id="nodata-patrimonio" class="patrimonio-badge hidden"></span>
+        <p class="nodata-title">No se tenía información disponible</p>
+        <p id="nodata-codigo" class="matricula"></p>
+        <button id="nodata-ficha-patrimonio" class="btn-pdf btn-pdf-patrimonio hidden" onclick="openFichaPatrimonio()">Ver ficha de inventario patrimonial</button>
+        <button class="btn-close" onclick="closePanelDetail()">Cerrar</button>
+      </div>
+    </div>
+  </main>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="data/predios_data.js"></script>
+  <script src="data/patrimonio_data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

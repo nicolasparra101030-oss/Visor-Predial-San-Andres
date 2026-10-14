@@ -1,0 +1,10 @@
+# Insumos fuente pesados (GDB/shapefiles/anexos); se regeneran con los scripts
+patrimonio/
+
+# Configuración local del editor/herramientas
+.claude/
+
+# Sistema
+Thumbs.db
+.DS_Store
+desktop.ini
